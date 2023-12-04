@@ -7,3 +7,8 @@ function scrollToSection(sectionId) {
     section.scrollIntoView({ behavior: 'smooth' });
   }
 }  
+
+let button = document.getElementById('searchButton');
+document.addEventListener('click', () => {
+  console.log('Button was clicked');
+});

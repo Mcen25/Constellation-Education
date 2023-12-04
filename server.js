@@ -1,29 +1,47 @@
 console.log('Server-side code running');
 
 const express = require('express');
-const { MongoClient, ServerApiVersion } = require('mongodb');
+const { Client } = require('pg');
 
 const app = express();
 const port = 3000;
 app.use(express.static('public'));
-//const uri = "mongodb+srv://Mcen25:ZCsyZipn0J1fpbnW@constellations.ketcgbo.mongodb.net/?retryWrites=true&w=majority";
-const uri = "mongodb+srv://Mcen25:ZCsyZipn0J1fpbnW@constellations.ketcgbo.mongodb.net/?retryWrites=true&w=majority";
-//Create a MongoClient with a MongoClientOptions object to set the Stable API version
-const client = new MongoClient(uri);
 
-async function run() {
+const client = new Client({
+  user: 'postgres',
+  host: 'localhost',
+  database: 'Constellations',
+  password: 'AppaMomo2025',
+  port: 5432,
+});
+
+client.connect();
+
+app.get('/constellation', async (req, res) => {
   try {
-    // Connect the client to the server	(optional starting in v4.7)
-    await client.connect();
-    // Send a ping to confirm a successful connection
-    await client.db("admin").command({ ping: 1 });
-    console.log("Pinged your deployment. You successfully connected to MongoDB!");
-  } finally {
-    // Ensures that the client will close when you finish/error
-    await client.close();
+    const { rows } = await pool.query('SELECT * FROM constellation');
+    console.log(rows);
+  } catch (error) {
+    console.log(error);
+    res.status(500).send('Error retrieving users from database');
   }
-}
-run().catch(console.dir);
+});
+
+const tableName = 'constellation';
+const query = `SELECT * FROM ${tableName}`;
+
+client.query(query, (err, result) => {
+  if (err) {
+    console.error('Error executing query', err);
+    client.end();
+    return;
+  }
+
+  const rows = result.rows;
+  console.log('Rows from the table:', rows);
+
+  client.end();
+});
 
 app.listen(port, () => {
   console.log('listening on 3000');
