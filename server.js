@@ -19,7 +19,8 @@ client.connect();
 
 app.get('/constellation', async (req, res) => {
   try {
-    const { rows } = await pool.query('SELECT * FROM constellation');
+    const { rows } = await client.query('SELECT fullName FROM constellation');
+    res.send(rows);
     console.log(rows);
   } catch (error) {
     console.log(error);
@@ -27,24 +28,24 @@ app.get('/constellation', async (req, res) => {
   }
 });
 
-const tableName = 'constellation';
-const query = `SELECT * FROM ${tableName}`;
+// const tableName = 'constellation';
+// const query = `SELECT * FROM ${tableName}`;
 
-client.query(query, (err, result) => {
-  if (err) {
-    console.error('Error executing query', err);
-    client.end();
-    return;
-  }
+// client.query(query, (err, result) => {
+//   if (err) {
+//     console.error('Error executing query', err);
+//     client.end();
+//     return;
+//   }
 
-  const rows = result.rows;
-  console.log('Rows from the table:', rows);
+//   const rows = result.rows;
+//   console.log('Rows from the table:', rows);
 
-  client.end();
-});
+//   client.end();
+// });
 
 app.listen(port, () => {
-  console.log('listening on 3000');
+  console.log('listening on 3000 on http://localhost:3000/');
 });
 
 // serve the homepage
