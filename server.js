@@ -1,7 +1,5 @@
 console.log('Server-side code running');
 
-// const express = require('express');
-// const MongoClient = require('mongodb').MongoClient;
 import 'dotenv/config';
 import express from 'express';
 import { ConstellationDatabase } from './database.js';
@@ -30,6 +28,7 @@ class ConsetllationServer {
       try {
         const { id } = req.query;
         const name = await self.db.readPerson(id);
+        console.log(name);
         res.send(JSON.stringify(name));
       } catch (err) {
         res.status(500).send(err);
@@ -59,6 +58,7 @@ class ConsetllationServer {
     this.app.get('/person/all', async (req, res) => {
       try {
         const people = await self.db.readAllPeople();
+        console.log(people);
         res.send(JSON.stringify(people));
       } catch (err) {
         res.status(500).send(err);

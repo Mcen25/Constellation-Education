@@ -9,14 +9,18 @@ function scrollToSection(sectionId) {
 }  
 
 let button = document.getElementById('searchButton');
-document.addEventListener('click', () => {
+button.addEventListener('click', function(e) {
   console.log('Button was clicked');
 
-  // try {
-  //   const response = await fetch('/getData');
-  //   const data = await response.json();
-  //   console.log(data);
-  // } catch (err) {
-  //   console.error('Error fetching data:', error);
-  // }
+  fetch('/person/all', {method: 'GET'})
+  .then(function(response) {
+    if(response.ok) {
+      console.log('click was recorded');
+      return;
+    }
+    throw new Error('Request failed.');
+  })
+  .catch(function(error) {
+    console.log(error);
+  });
 });
