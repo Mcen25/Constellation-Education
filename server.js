@@ -55,6 +55,16 @@ class ConsetllationServer {
     //   }
     // });
 
+    this.app.get('/constellation', async (req, res) => {
+      try { 
+        const {name} = req.query;
+        const constellation = await self.db.readConstellation(name);
+        console.log(constellation);
+      } catch (err) {
+        res.status(500).send(err);
+      }
+    });
+
     this.app.get('/person/all', async (req, res) => {
       try {
         const people = await self.db.readAllPeople();
@@ -77,7 +87,7 @@ class ConsetllationServer {
     const port = process.env.PORT || 3000;
     this.app.use(express.static('public'));
     this.app.listen(port, () => {
-      console.log(`PeopleServer listening on port ${port}!`);
+      console.log(`PeopleServer listening on port ${port}! on http://localhost:${port}`);
     });
     this.app.get('/', (req, res) => {
       res.sendFile(__dirname + '/index.html');

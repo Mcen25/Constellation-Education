@@ -61,6 +61,12 @@ export class ConstellationDatabase {
     return res;
   }
 
+  //Read a consetllation from the database.
+  async readConstellation(name) {
+    const res = await this.collection.findOne({ fullName: 'Andromeda'});
+    return res;
+  }
+
 //   // UPDATE a user in the database.
 //   async updatePerson(id, name, age) {
 //     const res = await this.collection.updateOne(

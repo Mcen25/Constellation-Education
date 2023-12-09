@@ -12,7 +12,7 @@ let button = document.getElementById('searchButton');
 button.addEventListener('click', function(e) {
   console.log('Button was clicked');
 
-  fetch('/person/all', {method: 'GET'})
+  fetch('/constellation', {method: 'GET'})
   .then(function(response) {
     if(response.ok) {
       console.log('click was recorded');
