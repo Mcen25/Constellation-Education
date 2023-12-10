@@ -59,7 +59,7 @@ body {
     flex-direction: column;
 
     width: 1000px;
-    height: 1000px;
+    height: 700px;
     border: 3px solid;
     border-radius: 5px;
     margin-top: 30px;
@@ -136,7 +136,9 @@ body {
     align-self: center;
 }
 
-.center {
-    align-self: center;
+.putCenter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin-top: 5px;
 }

@@ -24,10 +24,12 @@ export class ConstellationDatabase {
 
   async init() {
     this.collection = this.db.collection('Constellation');
+    this.collectionList = this.db.collection('List');
 
-    const count = await this.collection.countDocuments();
+    const count1 = await this.collection.countDocuments();
+    const count2 = await this.collectionList.countDocuments();
 
-    if (count === 0) {
+    if (count1 === 0) {
       await this.collection.insertOne([
         {fullName:"Andromeda",
         abbreviations:"And",
@@ -40,80 +42,55 @@ export class ConstellationDatabase {
         area:722}
       ]);
     }
+      
+    if (count2 === 0) {
+      await this.collection.insertOne([
+        {
+          id: "set1",
+          name1: "Andromeda",
+          name2: "Aquarius",
+          name3: "Aquila",
+          name4: "Ara",
+          name5: "Aries",
+        }
+      ]);
+    }
+   
   }
   // Close the pool.
   async close() {
     this.client.close();
   }
 
-//   // CREATE a user in the database.
-//   async createPerson(id, name, age) {
-//     const res = await this.collection.insertOne({ _id: id, name, age });
-//     // Note: the result received back from MongoDB does not contain the
-//     // entire document that was inserted into the database. Instead, it
-//     // only contains the _id of the document (and an acknowledged field).
-//     return res;
-//   }
-
-  // READ a user from the database.
-  async readPerson(id) {
-    const res = await this.collection.findOne({ fullName: id });
-    return res;
-  }
-
-  //Read a consetllation from the database.
-  // async readConstellation() {
-  //   const data = await this._read();
-  //   const res = await this.collection.findOne({ "fullName": data.word[0].name});
-  //   return res;
-  // }
-
   async readConstellation(fullName) {
     const res = await this.collection.findOne({ "fullName": fullName});
     return res;
   }
 
-//   // UPDATE a user in the database.
-//   async updatePerson(id, name, age) {
-//     const res = await this.collection.updateOne(
-//       { _id: id },
-//       { $set: { name, age } }
-//     );
-//     return res;
-//   }
-
-//   // DELETE a user from the database.
-//   async deletePerson(id) {
-//     // Note: the result received back from MongoDB does not contain the
-//     // entire document that was deleted from the database. Instead, it
-//     // only contains the 'deletedCount' (and an acknowledged field).
-//     const res = await this.collection.deleteOne({ _id: id });
-//     return res;
-//   }
-
-  // READ all people from the database.
-  async readAllPeople() {
-    const res = await this.collection.find({}).toArray();
+   // CREATE a user in the database.
+   async createList(idName, givenName1, givenName2, givenName3, givenName4, givenName5) {
+    const res = await this.collection.insertOne({ id: idName, givenName1, name2: givenName2, name3: givenName3, name4: givenName4, name5: givenName5 });
     return res;
   }
 
-  async saveConstellationName(name) {
-    const data = await this._read();
-    data.word.unshift({ name });
-    await this._write(data);
+  // READ a user from the database.
+  async readList(idName) {
+    const res = await this.collection.findOne({ id: idName });
+    return res;
   }
 
-  async _read() {
-    try {
-      const data = await readFile(this.path, 'utf8');
-      return JSON.parse(data);
-    } catch (error) {
-      return { word: [] };
-    }
+  // UPDATE a user in the database.
+  async updateList(id, name, age) {
+    const res = await this.collection.updateOne(
+      { _id: id },
+      { $set: { name, age } }
+    );
+    return res;
   }
 
-  // This is a private methods. The # prefix means that they are private.
-  async _write(data) {
-    await writeFile(this.path, JSON.stringify(data), 'utf8');
+  // DELETE a user from the database.
+  async deleteList(id) {
+    const res = await this.collection.deleteOne({ id: idName });
+    return res;
   }
 }

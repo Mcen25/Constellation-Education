@@ -15,72 +15,6 @@ class ConsetllationServer {
     // Note: when using arrow functions, the "this" binding is lost.
     const self = this;
 
-    // this.app.get('/person/create', async (req, res) => {
-    //   try {
-    //     const { id, name, age } = req.query;
-    //     const person = await self.db.createPerson(id, name, age);
-    //     res.send(JSON.stringify(person));
-    //   } catch (err) {
-    //     res.status(500).send(err);
-    //   }
-    // });
-
-    this.app.get('/read', async (req, res) => {
-      try {
-        const { id } = req.query;
-        const name = await self.db.readPerson(id);
-        console.log(name);
-        res.send(JSON.stringify(name));
-      } catch (err) {
-        res.status(500).send(err);
-      }
-    });
-
-    // this.app.get('/person/update', async (req, res) => {
-    //   try {
-    //     const { id, name, age } = req.query;
-    //     const person = await self.db.updatePerson(id, name, age);
-    //     res.send(JSON.stringify(person));
-    //   } catch (err) {
-    //     res.status(500).send(err);
-    //   }
-    // });
-
-    // this.app.get('/person/delete', async (req, res) => {
-    //   try {
-    //     const { id } = req.query;
-    //     const person = await self.db.deletePerson(id);
-    //     res.send(JSON.stringify(person));
-    //   } catch (err) {
-    //     res.status(500).send(err);
-    //   }
-    // });
-
-    // this.app.post('/constellation', async (request, response) => {
-    //   const search = request.body;
-    //   try { 
-    //     // const constellation = await self.db.readConstellation(searchValue.search);
-    //     const constellation = search.searchValue;
-    //     console.log(constellation);
-    //     response.send(JSON.stringify(constellation));
-    //     //console.log(options.search);
-    //   } catch (err) {
-    //     response.status(500).send(err);
-    //     response.status(500).send(err.message);
-    //   }
-    // });
-
-    // this.app.post('/constellation', async (request, response) => {
-    //   const search = request.body;
-    //   try { 
-    //     const constellation = search.searchValue;
-    //     console.log(constellation);
-    //     response.send(JSON.stringify(constellation));
-    //   } catch (err) {
-    //     console.log(err);
-    //   }
-    // });
-
     this.app.post('/constellation/postName', async (request, response) => {
       try {
         const search = request.body;
@@ -99,33 +33,46 @@ class ConsetllationServer {
       }
     });
 
-    // this.app.post('/constellation/postName', (req, res) => {
-    //   const searchValue = req.body;
-    //   console.log(searchValue);
-    //   // Call your function here with the searchValue
-    //   // Example: myFunction(searchValue);
-    //   res.redirect('/'); // Redirect to another page after processing the input
-    // });
-
-    this.app.get('/constellation/name', async (req, res) => {
+    this.app.get('/list/create', async (req, res) => {
       try {
-        const constellation = await self.db.readConstellation();
-        console.log(constellation);
-        res.send(JSON.stringify(constellation));
+        const { id, name, age } = req.query;
+        const person = await self.db.createPerson(id, name, age);
+        res.send(JSON.stringify(person));
       } catch (err) {
         res.status(500).send(err);
       }
     });
 
-    this.app.get('/person/all', async (req, res) => {
+    this.app.get('/list/read', async (req, res) => {
       try {
-        const people = await self.db.readAllPeople();
-        console.log(people);
-        res.send(JSON.stringify(people));
+        const { id } = req.query;
+        const person = await self.db.readPerson(id);
+        res.send(JSON.stringify(person));
       } catch (err) {
         res.status(500).send(err);
       }
     });
+
+    this.app.get('/list/update', async (req, res) => {
+      try {
+        const { id, name, age } = req.query;
+        const person = await self.db.updatePerson(id, name, age);
+        res.send(JSON.stringify(person));
+      } catch (err) {
+        res.status(500).send(err);
+      }
+    });
+
+    this.app.get('/list/delete', async (req, res) => {
+      try {
+        const { id } = req.query;
+        const person = await self.db.deletePerson(id);
+        res.send(JSON.stringify(person));
+      } catch (err) {
+        res.status(500).send(err);
+      }
+    });
+
 
   }
 
