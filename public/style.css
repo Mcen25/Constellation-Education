@@ -135,3 +135,8 @@ body {
     margin-top: 10px;
     align-self: center;
 }
+
+.center {
+    align-self: center;
+    margin-top: 5px;
+}

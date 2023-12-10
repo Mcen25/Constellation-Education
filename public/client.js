@@ -8,18 +8,69 @@ function scrollToSection(sectionId) {
   }
 }  
 
-let search = document.getElementById('constellationSearch').value;
-let button = document.getElementById('searchButton');
-button.addEventListener('click', () => {
-  // console.log(search);
+// let search = document.getElementById('constellationSearch').value;
+// let button = document.getElementById('searchButton');
+// button.addEventListener('click', () => {
+//   console.log(search);
 
-  fetch('/constellation', {method: 'GET'})   
-    .then(response => response.json())
-    .then(data => {
+//   fetch('/constellation')  
+//     .then(response => response.json())
+//     .then(data => {
+
+//       const dataString = JSON.stringify(data);
+//       const jsonData = JSON.parse(dataString);
+
+//       const fullName = jsonData.fullName;
+//       const abbreviations = jsonData.abbreviations;
+//       const origin = jsonData.origin;
+//       const meaning = jsonData.meaning;
+//       const brightestStar = jsonData.brightestStar;
+//       const url = jsonData.url;
+//       const visible = jsonData.visible;
+//       const starNum = jsonData.starNum;
+//       const area = jsonData.area;
+
+//       const divElement = document.getElementById('constellationInfo');
+
+//       divElement.innerHTML = `
+//       <h2>${fullName}</h2>
+//       <img src="${url}" alt="Description of the image" width="500" height="500">
+//       <p><strong>Abbreviations:</strong> ${abbreviations}</p>
+//       <p><strong>Origin:</strong> ${origin}</p>
+//       <p><strong>Meaning:</strong> ${meaning}</p>
+//       <p><strong>Brightest Star:</strong> ${brightestStar}</p>
+//       <p><strong>Visible:</strong> ${visible}</p>
+//       <p><strong>Star Number:</strong> ${starNum}</p>
+//       <p><strong>Area:</strong> ${area}</p>
+//     `;
+//     })
+//     .catch(error => {
+//       console.error('Error:', error);
+//     });
+
+// });
+
+const constellationSearch = document.getElementById('constellationSearch');
+const searchButton = document.getElementById('searchButton');
+
+searchButton.addEventListener('click', async () => {
+  const searchValue = constellationSearch.value;
+
+  try {
+    const response = await fetch(`/constellation/postName`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ searchValue }),
+    });
+
+    if (response.ok) {
+      const data = await response.json();
 
       const dataString = JSON.stringify(data);
       const jsonData = JSON.parse(dataString);
-      
+
       const fullName = jsonData.fullName;
       const abbreviations = jsonData.abbreviations;
       const origin = jsonData.origin;
@@ -33,7 +84,7 @@ button.addEventListener('click', () => {
       const divElement = document.getElementById('constellationInfo');
 
       divElement.innerHTML = `
-      <h2>${fullName}</h2>
+      <h2 class="center">${fullName}</h2>
       <img src="${url}" alt="Description of the image" width="500" height="500">
       <p><strong>Abbreviations:</strong> ${abbreviations}</p>
       <p><strong>Origin:</strong> ${origin}</p>
@@ -43,8 +94,13 @@ button.addEventListener('click', () => {
       <p><strong>Star Number:</strong> ${starNum}</p>
       <p><strong>Area:</strong> ${area}</p>
     `;
-    })
-    .catch(error => {
-      console.error('Error:', error);
-    });
+    } else {
+      console.log('Error:', response.status);
+    }
+  } catch (err) {
+    console.log(err);
+  }
 });
+
+   // Handle the returned data
+     

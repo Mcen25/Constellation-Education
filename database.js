@@ -62,8 +62,14 @@ export class ConstellationDatabase {
   }
 
   //Read a consetllation from the database.
-  async readConstellation(name) {
-    const res = await this.collection.findOne({ fullName: 'Andromeda'});
+  // async readConstellation() {
+  //   const data = await this._read();
+  //   const res = await this.collection.findOne({ "fullName": data.word[0].name});
+  //   return res;
+  // }
+
+  async readConstellation(fullName) {
+    const res = await this.collection.findOne({ "fullName": fullName});
     return res;
   }
 
@@ -89,5 +95,25 @@ export class ConstellationDatabase {
   async readAllPeople() {
     const res = await this.collection.find({}).toArray();
     return res;
+  }
+
+  async saveConstellationName(name) {
+    const data = await this._read();
+    data.word.unshift({ name });
+    await this._write(data);
+  }
+
+  async _read() {
+    try {
+      const data = await readFile(this.path, 'utf8');
+      return JSON.parse(data);
+    } catch (error) {
+      return { word: [] };
+    }
+  }
+
+  // This is a private methods. The # prefix means that they are private.
+  async _write(data) {
+    await writeFile(this.path, JSON.stringify(data), 'utf8');
   }
 }
