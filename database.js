@@ -44,7 +44,7 @@ export class ConstellationDatabase {
     }
       
     if (count2 === 0) {
-      await this.collection.insertOne([
+      await this.db.collection('List').insertOne([
         {
           id: "set1",
           name1: "Andromeda",
@@ -55,8 +55,8 @@ export class ConstellationDatabase {
         }
       ]);
     }
-   
   }
+
   // Close the pool.
   async close() {
     this.client.close();
@@ -67,30 +67,34 @@ export class ConstellationDatabase {
     return res;
   }
 
+  async readAllConstellations() {
+    const res = await this.collection.find({}).toArray();
+    return res;
+  }
    // CREATE a user in the database.
    async createList(idName, givenName1, givenName2, givenName3, givenName4, givenName5) {
-    const res = await this.collection.insertOne({ id: idName, givenName1, name2: givenName2, name3: givenName3, name4: givenName4, name5: givenName5 });
+    const res = await this.collectionList.insertOne({ id: idName, givenName1, name2: givenName2, name3: givenName3, name4: givenName4, name5: givenName5 });
     return res;
   }
 
   // READ a user from the database.
   async readList(idName) {
-    const res = await this.collection.findOne({ id: idName });
+    const res = await this.collectionList.findOne({ id: idName });
     return res;
   }
 
   // UPDATE a user in the database.
-  async updateList(id, name, age) {
-    const res = await this.collection.updateOne(
-      { _id: id },
+  async updateList(idName, name, age) {
+    const res = await this.collectionList.updateOne(
+      { id: idName },
       { $set: { name, age } }
     );
     return res;
   }
 
   // DELETE a user from the database.
-  async deleteList(id) {
-    const res = await this.collection.deleteOne({ id: idName });
+  async deleteList(idName) {
+    const res = await this.collectionList.deleteOne({ id: idName });
     return res;
   }
 }

@@ -62,5 +62,35 @@ searchButton.addEventListener('click', async () => {
   }
 });
 
-   // Handle the returned data
-     
+async function constellationButtons() {
+  try {
+    const response = await fetch(`/constellation/getAll`, {method: 'GET'});
+    if (response.ok) {
+      const data = await response.json();
+      const dataString = JSON.stringify(data);
+      const jsonData = JSON.parse(dataString);
+      console.log(jsonData);
+
+      const divElement = document.getElementById('buttonRectangle');
+
+      const fullName = jsonData.fullName;
+
+      // divElement.innerHTML += `
+      // <button class="button")">${fullName}</button>`;
+
+      jsonData.forEach((constellation) => {
+        const fullName = constellation.fullName;
+        const button = document.createElement('button');
+        button.className = 'button';
+        button.textContent = fullName;
+        divElement.appendChild(button);
+      });
+    } else {
+      console.log('Error:', response.status);
+    }
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+await constellationButtons();

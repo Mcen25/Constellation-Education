@@ -33,6 +33,16 @@ class ConsetllationServer {
       }
     });
 
+    this.app.get('/constellation/getAll', async (request, response) => {
+      try {
+        const constellations = await self.db.readAllConstellations();
+        response.status(200).send(JSON.stringify(constellations));
+      } catch (err) {
+        console.log(err);
+        response.status(500).send(err);
+      }
+    });
+
     this.app.get('/list/create', async (req, res) => {
       try {
         const { id, name, age } = req.query;
