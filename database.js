@@ -81,19 +81,17 @@ export class ConstellationDatabase {
     const res = await this.collection.find({}).toArray();
     return res;
   }
-   // CREATE a user in the database.
+
    async createList(idName, givenName1, givenName2, givenName3, givenName4, givenName5) {
     const res = await this.collectionList.insertOne({ id: idName, name1: givenName1, name2: givenName2, name3: givenName3, name4: givenName4, name5: givenName5 });
     return res;
   }
 
-  // READ a user from the database.
   async readList(idName) {
     const res = await this.collectionList.findOne({ id: idName });
     return res;
   }
 
-  // UPDATE a user in the database.
   async updateList(idName, name1, name2, name3, name4, name5) {
     const res = await this.collectionList.updateOne(
       { id: idName },
@@ -102,7 +100,6 @@ export class ConstellationDatabase {
     return res;
   }
 
-  // DELETE a user from the database.
   async deleteList(idName) {
     const res = await this.collectionList.deleteOne({ id: idName });
     return res;

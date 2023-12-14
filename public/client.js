@@ -140,6 +140,7 @@ createListButton.addEventListener('click', async () => {
   const addName3Value = addName3.value;
   const addName4Value = addName4.value;
   const addName5Value = addName5.value;
+  const divElement = document.getElementById('createResponse');
 
   try {
     const response = await fetch(`/list/create`, {
@@ -154,11 +155,12 @@ createListButton.addEventListener('click', async () => {
       const data = await response.json();
       console.log(data);
 
-      const divElement = document.getElementById('createResponse');
+      
 
       divElement.innerHTML = `${createListValue} has been updated to the database!`;
     } else {
-      console.log('Error:', response.status);
+      divElement.innerHTML = `Error: ${response.status} You did not enter a name for the list`;
+      console.log(`Error: ${response.status} You did not enter a name for the list`);
     }
   } catch (err) {
     console.log(err);
@@ -216,6 +218,7 @@ retrieveButton.addEventListener('click', async () => {
 
 deleteButton.addEventListener('click', async () => {
   const deleteListSearchValue = deleteListSearch.value;
+  const divElement = document.getElementById('deleteResponse');
   try {
     const response = await fetch(`/list/delete`, {
       method: 'POST',
@@ -225,11 +228,9 @@ deleteButton.addEventListener('click', async () => {
       body: JSON.stringify({ deleteListSearchValue }),
     });
     if (response.ok) {
-      const data = await response.json();
-      console.log(data);
-      console.log(`${deleteListSearch} has been deleted from the database!`);
+      divElement.innerHTML = `${deleteListSearchValue} has been deleted from the database!`;
     } else {
-      console.log('Error:', response.status);
+      divElement.innerHTML = `Error: ${response.status} You did not enter a name for the list`;
     }
   } catch (err) {
     console.log(err);
@@ -238,7 +239,7 @@ deleteButton.addEventListener('click', async () => {
 
 searchButton.addEventListener('click', async () => {
   const searchValue = constellationSearch.value;
-
+  const divElement = document.getElementById('constellationResponse');
   try {
     const response = await fetch(`/constellation/postName`, {
       method: 'POST',
@@ -250,9 +251,11 @@ searchButton.addEventListener('click', async () => {
 
     if (response.ok) {
       const data = await response.json();
+      divElement.innerHTML = '';
       localStorage.setItem('constellation', JSON.stringify(data));
       renderConstellation(JSON.stringify(data));
     } else {
+      divElement.innerHTML = `Error: ${response.status} You did not enter a name for the constellation`;
       console.log('Error:', response.status);
     }
   } catch (err) {
@@ -261,6 +264,7 @@ searchButton.addEventListener('click', async () => {
 });
 
 async function constellationButtons() {
+  const divElement = document.getElementById('retrieveResponse');
   try {
     const response = await fetch(`/constellation/getAll`, {method: 'GET'});
     if (response.ok) {
@@ -282,6 +286,7 @@ async function constellationButtons() {
         divElement.appendChild(button);
       });
     } else {
+      divElement.innerHTML = `Error: ${response.status} There are no constellations in the database`;
       console.log('Error:', response.status);
     }
   } catch (err) {

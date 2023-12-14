@@ -2,166 +2,169 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Node + Express + MongoDb example</title>
+    <title>Constellation Education</title>
     <link href="style.css" rel="stylesheet">
-
     <script type="module" src="client.js"></script>
   </head>
   <body>
     <div>
       <h1 id="title">Constellation Education</h1>
       <h1 id="subTitle">Developed by Matthew En</h1>
-  </div>
-  <div class="container">     
-      <button id="section1Button" class="buttons topMenu">Go to Section 1</button>
-      <button id="section2Button" class="buttons topMenu">Go to Section 2</button>
-      <button id="section3Button" class="buttons topMenu">Go to Section 3</button>
-
-      <button id="home" class ="buttons">Home</button>
-      <button id="feedback" class ="buttons">Feedback</button>
-  </div>
-
-  <div class="rectangle">
-    <div id="searchForm" class="searchSet">
-        <label for="constellationSearch" class="font1">Constellation search: </label>
-        <input type="text" id="constellationSearch">
-        <button class="buttons search" id="searchButton">Search</button>
-        <button class="buttons search" id="clearButton">Clear</button>      
     </div>
 
-    <div id="constellationInfo">
+    <div class="container">     
+        <button id="section1Button" class="buttons topMenu">Go to Section 1</button>
+        <button id="section2Button" class="buttons topMenu">Go to Section 2</button>
+        <button id="section3Button" class="buttons topMenu">Go to Section 3</button>
 
-    </div>
-  </div>
-
-  <div class="secondRectangle">
-
-    <div id="buttonRectangle" class="smallRectangle">
-      <h3>Available Constellations: </h1>
-    </div>
-    <div id="retrieveRectangle" class="smallRectangle">
-      <br>
-      <label for="retrieveList" class="font1">Retrieve list </label>
-      <br>
-      <input type="text" id="retrieveList">
-      <button class="buttons search" id="retrieveButton">Search</button> 
-      <div id="retrieveResponse"></div>
-    </div>
-    <div id="listRectangle" class="smallRectangle">
-      <h3>Create a list of constellations:</h3>
-      <br>
-      <label for="createList" class="font1">Create list</label>
-      <input type="text" id="createList">
-      <br>
-      <label for="addName1" class="font1">Name 1: </label>
-      <input type="text" id="addName1">
-      <br>
-      <label for="addName2" class="font1">Name 2: </label>
-      <input type="text" id="addName2">
-      <br>
-      <label for="addName3" class="font1">Name 3: </label>
-      <input type="text" id="addName3">
-      <br>
-      <label for="addName4" class="font1">Name 4: </label>
-      <input type="text" id="addName4">
-      <br>
-      <label for="addName5" class="font1">Name 5: </label>
-      <input type="text" id="addName5">
-      <br>
-      <button class="buttons search putCenter" id="createListButton">Create List!</button>
-      <div id="createResponse"></div>
-    </div>
-    <div id="updateRectangle" class="smallRectangle">
-      <h3>Update a list of constellations:</h3>
-      <br>
-      <label for="updateList" class="font1">Create list</label>
-      <input type="text" id="updateList">
-      <br>
-      <label for="updateName1" class="font1">Name 1: </label>
-      <input type="text" id="updateName1">
-      <br>
-      <label for="updateName2" class="font1">Name 2: </label>
-      <input type="text" id="updateName2">
-      <br>
-      <label for="updateName3" class="font1">Name 3: </label>
-      <input type="text" id="updateName3">
-      <br>
-      <label for="updateName4" class="font1">Name 4: </label>
-      <input type="text" id="updateName4">
-      <br>
-      <label for="updateName5" class="font1">Name 5: </label>
-      <input type="text" id="updateName5">
-      <br>
-      <button class="buttons search putCenter" id="updateListButton">Update List!</button>
-      <div id="updateResponse"></div>
+        <button id="home" class ="buttons">Home</button>
+        <button id="feedback" class ="buttons">Feedback</button>
     </div>
 
-  </div>
+    <div class="rectangle">
+      <div id="searchForm" class="searchSet">
+          <label for="constellationSearch" class="font1">Constellation search: </label>
+          <input type="text" id="constellationSearch">
+          <button class="buttons search" id="searchButton">Search</button>
+          <button class="buttons search" id="clearButton">Clear</button>      
+      </div>
 
-  <div class="deleteRectangle">
-    <div class="searchSet">
-      <label for="deleteList" class="font1">Delete a saved list: </label>
-      <input type="text" id="deleteList">
-      <button class="buttons search" id="deleteButton">Delete</button>   
+      <div id="constellationInfo"></div>
+      <div id="constellationResponse"></div>
     </div>
-  </div>
 
-  <div id="section1" class="section lower-div">
-      <h1>What are consetllations?</h1>
-      <div class="paragraphFormat">
-        <p>Constellations are an area on the celstial sphere that is a physically percievable pattern of stars.
-          
-          Constellations are the result of the human imagination. They are not real, but are a way to help us organize the night sky. 
-          They are usually a representation of an animal, person, or object.
+    <div class="secondRectangle">
 
-          Origins of these constellations are quite old. The oldest known constellations are from the Babylonian period.
-        </p>
+      <div id="buttonRectangle" class="smallRectangle">
+        <h3>Available Constellations: </h1>
+      </div>
 
-        <image src="https://upload.wikimedia.org/wikipedia/commons/d/d8/Hipparcos_Catalogue_equirectangular_plot.svg" alt="Constellation Finder">
+      <div id="retrieveRectangle" class="smallRectangle">
+        <br>
+        <label for="retrieveList" class="font1">Retrieve list </label>
+        <br>
+        <input type="text" id="retrieveList">
+        <button class="buttons search" id="retrieveButton">Search</button> 
+        <div id="retrieveResponse"></div>
+      </div>
 
-        <p>
-          Modern constellations sets include 88 IAU accepeted constellations. 
-        </p>
+      <div id="listRectangle" class="smallRectangle">
+        <h3>Create a list of constellations:</h3>
+        <br>
+        <label for="createList" class="font1">Create list</label>
+        <input type="text" id="createList">
+        <br>
+        <label for="addName1" class="font1">Name 1: </label>
+        <input type="text" id="addName1">
+        <br>
+        <label for="addName2" class="font1">Name 2: </label>
+        <input type="text" id="addName2">
+        <br>
+        <label for="addName3" class="font1">Name 3: </label>
+        <input type="text" id="addName3">
+        <br>
+        <label for="addName4" class="font1">Name 4: </label>
+        <input type="text" id="addName4">
+        <br>
+        <label for="addName5" class="font1">Name 5: </label>
+        <input type="text" id="addName5">
+        <br>
+        <button class="buttons search putCenter" id="createListButton">Create List!</button>
+        <div id="createResponse"></div>
       </div>
       
-  </div>
-
-  <div id="section2" class="section lower-div">
-      <h1>How to find constellations</h1>
-
-      <div class="paragraphFormat">
-        <p>
-          To find constellations in the night sky you should find a dark location. Away from highly luminous aritifal light. 
-          An easy way to find constellations is by using north star polaris.
-        </p>
-
-        <image src="https://upload.wikimedia.org/wikipedia/commons/d/da/Ursa_Minor_constellation_map.svg" alt="Polaris">
-
-        <p>
-          Then you can use a star map that will help you find the constellations you are looking using polaris as a reference in the night sky. 
-          I reccomend using a phone app that will help you find constellations in the night sky. Such as Stellerium or Sky Guide. They use GPS and
-          will give accurate representation of the night sky at the exact second of the day. It also includes features for you to find objects using 
-          your phone's camera and position. 
-
-          Some constellations are seasonal. Meaning that they are only visible during certain times of the year. You should be able to identify them
-          using the star map. 
-        </p>
-  </div>
-
-  <div id="section3" class="section lower-div">
-      <h1>Objects in constellations for observation</h1>
-      <div class="paragraphFormat">
-        <p>
-          Objects that you can find in constellations are of course stars. But there are also other objects that you can find in constellations. Such as: nebulas, galaxies, and star clusters.
-        </p>
-
-        <image src="https://upload.wikimedia.org/wikipedia/commons/9/98/Andromeda_Galaxy_%28with_h-alpha%29.jpg" alt="Andromeda Galaxy" style="width: 1000px; height: auto;">
-
-        <p>
-          This image is a picture of the Andromeda Galaxy. And object that you can find in the Andromeda constellation.
-        </p>
-      
+      <div id="updateRectangle" class="smallRectangle">
+        <h3>Update a list of constellations:</h3>
+        <br>
+        <label for="updateList" class="font1">Update list</label>
+        <input type="text" id="updateList">
+        <br>
+        <label for="updateName1" class="font1">Name 1: </label>
+        <input type="text" id="updateName1">
+        <br>
+        <label for="updateName2" class="font1">Name 2: </label>
+        <input type="text" id="updateName2">
+        <br>
+        <label for="updateName3" class="font1">Name 3: </label>
+        <input type="text" id="updateName3">
+        <br>
+        <label for="updateName4" class="font1">Name 4: </label>
+        <input type="text" id="updateName4">
+        <br>
+        <label for="updateName5" class="font1">Name 5: </label>
+        <input type="text" id="updateName5">
+        <br>
+        <button class="buttons search putCenter" id="updateListButton">Update List!</button>
+        <div id="updateResponse"></div>
       </div>
+
+    </div>
+
+    <div class="deleteRectangle">
+      <div class="searchSet">
+        <label for="deleteList" class="font1">Delete a saved list: </label>
+        <input type="text" id="deleteList">
+        <button class="buttons search" id="deleteButton">Delete</button>   
+      </div>
+      <div id="deleteResponse"></div>
+    </div>
+
+    <div id="section1" class="section lower-div">
+        <h1>What are consetllations?</h1>
+        <div class="paragraphFormat">
+          <p>Constellations are an area on the celstial sphere that is a physically percievable pattern of stars.
+            
+            Constellations are the result of the human imagination. They are not real, but are a way to help us organize the night sky. 
+            They are usually a representation of an animal, person, or object.
+
+            Origins of these constellations are quite old. The oldest known constellations are from the Babylonian period.
+          </p>
+
+          <image src="https://upload.wikimedia.org/wikipedia/commons/d/d8/Hipparcos_Catalogue_equirectangular_plot.svg" alt="Constellation Finder">
+
+          <p>
+            Modern constellations sets include 88 IAU accepeted constellations. 
+          </p>
+        </div>
+        
+    </div>
+
+    <div id="section2" class="section lower-div">
+        <h1>How to find constellations</h1>
+
+        <div class="paragraphFormat">
+          <p>
+            To find constellations in the night sky you should find a dark location. Away from highly luminous aritifal light. 
+            An easy way to find constellations is by using north star polaris.
+          </p>
+
+          <image src="https://upload.wikimedia.org/wikipedia/commons/d/da/Ursa_Minor_constellation_map.svg" alt="Polaris">
+
+          <p>
+            Then you can use a star map that will help you find the constellations you are looking using polaris as a reference in the night sky. 
+            I reccomend using a phone app that will help you find constellations in the night sky. Such as Stellerium or Sky Guide. They use GPS and
+            will give accurate representation of the night sky at the exact second of the day. It also includes features for you to find objects using 
+            your phone's camera and position. 
+
+            Some constellations are seasonal. Meaning that they are only visible during certain times of the year. You should be able to identify them
+            using the star map. 
+          </p>
+    </div>
+
+    <div id="section3" class="section lower-div">
+        <h1>Objects in constellations for observation</h1>
+        <div class="paragraphFormat">
+          <p>
+            Objects that you can find in constellations are of course stars. But there are also other objects that you can find in constellations. Such as: nebulas, galaxies, and star clusters.
+          </p>
+
+          <image src="https://upload.wikimedia.org/wikipedia/commons/9/98/Andromeda_Galaxy_%28with_h-alpha%29.jpg" alt="Andromeda Galaxy" style="width: 1000px; height: auto;">
+
+          <p>
+            This image is a picture of the Andromeda Galaxy. And object that you can find in the Andromeda constellation.
+          </p>
+      
+    </div>
   </div>
 
   <div id="feedbackSection" class="section lower-div">
@@ -174,5 +177,4 @@
     <div id="feedbackResponse"></div>
   </div>
   </body>
-  <!-- <script type="module" src="client.js"></script> -->
 </html>
