@@ -1,13 +1,5 @@
 console.log('Client-side code running');
 
-function scrollToSection(sectionId) {
-  const section = document.getElementById(sectionId);
-
-  if (section) {
-    section.scrollIntoView({ behavior: 'smooth' });
-  }
-}  
-
 //Search for a constellation
 const constellationSearch = document.getElementById('constellationSearch');
 const searchButton = document.getElementById('searchButton');
@@ -39,6 +31,38 @@ const updateListButton = document.getElementById('updateListButton');
 //Read Part of CRUD
 const readListSearch = document.getElementById('retrieveList');
 const readButton = document.getElementById('retrieveButton');
+
+//Feedback form
+const feedbackForm = document.getElementById('feedbackForm');
+const feedbackButton = document.getElementById('sendButton');
+
+feedbackButton.addEventListener('click', async () => {
+  const feedbackFormValue = feedbackForm.value;
+  
+  try {
+    const response = await fetch(`/feedback/post`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ feedbackFormValue }),
+    });
+
+    if (response.ok) {
+      const data = await response.json();
+      console.log(data);
+
+      const divElement = document.getElementById('feedbackResponse');
+
+      divElement.innerHTML = `Thank you for your feedback!`;
+    } else {
+      console.log('Error:', response.status);
+    }
+
+  } catch (err) {
+    console.log(err);
+  }
+});
 
 updateListButton.addEventListener('click', async () => {
   const updateListValue = updateList.value;
@@ -249,5 +273,13 @@ async function constellationButtons() {
     console.log(err);
   }
 }
+
+function scrollToSection(sectionId) {
+  const section = document.getElementById(sectionId);
+
+  if (section) {
+    section.scrollIntoView({ behavior: 'smooth' });
+  }
+}  
 
 await constellationButtons();

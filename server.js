@@ -135,6 +135,23 @@ class ConsetllationServer {
       }
     });
 
+    this.app.post('/feedback/post', async (request, response) => {
+      try {
+        const form = request.body;
+        const fromValue = form.feedbackFormValue;
+    
+        if (fromValue) {
+          const constellation = await self.db.createFeedback(fromValue);
+
+          response.status(200).send(JSON.stringify(constellation));
+        } else {
+          response.status(400).json({ error: 'Invalid search value' });
+        }
+      } catch (err) {
+        console.log(err);
+        response.status(500).send(err);
+      }
+    });
   }
 
   async initDb() {

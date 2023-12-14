@@ -25,9 +25,11 @@ export class ConstellationDatabase {
   async init() {
     this.collection = this.db.collection('Constellation');
     this.collectionList = this.db.collection('List');
+    this.collectionFeedback = this.db.collection('Feedback');
 
     const count1 = await this.collection.countDocuments();
     const count2 = await this.collectionList.countDocuments();
+    const count3 = await this.collectionFeedback.countDocuments();
 
     if (count1 === 0) {
       await this.collection.insertOne([
@@ -52,6 +54,14 @@ export class ConstellationDatabase {
           name3: "Aquila",
           name4: "Ara",
           name5: "Aries",
+        }
+      ]);
+    }
+
+    if (count3 === 0) {
+      await this.db.collection('Feedback').insertOne([
+        {
+          feedback: "This is a test feedback",
         }
       ]);
     }
@@ -95,6 +105,11 @@ export class ConstellationDatabase {
   // DELETE a user from the database.
   async deleteList(idName) {
     const res = await this.collectionList.deleteOne({ id: idName });
+    return res;
+  }
+
+  async createFeedback(input) {
+    const res = await this.collectionFeedback.insertOne({ feedback: input });
     return res;
   }
 }
