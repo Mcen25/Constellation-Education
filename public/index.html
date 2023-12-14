@@ -30,22 +30,76 @@
     <div id="constellationInfo">
 
     </div>
-    <br>
   </div>
 
-  <div class="rectangle">
-    <div id="listDB" class="searchSet">
-        <label for="createList" class="font1">Create list </label>
-        <input type="text" id="createList">
-        <button class="buttons search" id="createButton">Create</button>   
-        
-        <label for="retrieveList" class="font1">Retrieve list </label>
-        <input type="text" id="retrieveList">
-        <button class="buttons search" id="createButton">Search</button> 
-    </div>
+  <div class="secondRectangle">
 
     <div id="buttonRectangle" class="smallRectangle">
+      <h3>Available Constellations: </h1>
+    </div>
+    <div id="retrieveRectangle" class="smallRectangle">
+      <br>
+      <label for="retrieveList" class="font1">Retrieve list </label>
+      <br>
+      <input type="text" id="retrieveList">
+      <button class="buttons search" id="retrieveButton">Search</button> 
+    </div>
+    <div id="listRectangle" class="smallRectangle">
+      <h3>Create a list of constellations:</h3>
+      <br>
+      <label for="createList" class="font1">Create list</label>
+      <input type="text" id="createList">
+      <br>
+      <label for="addName1" class="font1">Name 1: </label>
+      <input type="text" id="addName1">
+      <br>
+      <label for="addName2" class="font1">Name 2: </label>
+      <input type="text" id="addName2">
+      <br>
+      <label for="addName3" class="font1">Name 3: </label>
+      <input type="text" id="addName3">
+      <br>
+      <label for="addName4" class="font1">Name 4: </label>
+      <input type="text" id="addName4">
+      <br>
+      <label for="addName5" class="font1">Name 5: </label>
+      <input type="text" id="addName5">
+      <br>
+      <button class="buttons search putCenter" id="createListButton">Create List!</button>
+      <div id="createResponse"></div>
+    </div>
+    <div id="updateRectangle" class="smallRectangle">
+      <h3>Update a list of constellations:</h3>
+      <br>
+      <label for="updateList" class="font1">Create list</label>
+      <input type="text" id="updateList">
+      <br>
+      <label for="updateName1" class="font1">Name 1: </label>
+      <input type="text" id="updateName1">
+      <br>
+      <label for="updateName2" class="font1">Name 2: </label>
+      <input type="text" id="updateName2">
+      <br>
+      <label for="updateName3" class="font1">Name 3: </label>
+      <input type="text" id="updateName3">
+      <br>
+      <label for="updateName4" class="font1">Name 4: </label>
+      <input type="text" id="updateName4">
+      <br>
+      <label for="updateName5" class="font1">Name 5: </label>
+      <input type="text" id="updateName5">
+      <br>
+      <button class="buttons search putCenter" id="updateListButton">Update List!</button>
+      <div id="updateResponse"></div>
+    </div>
 
+  </div>
+
+  <div class="deleteRectangle">
+    <div class="searchSet">
+      <label for="deleteList" class="font1">Delete a saved list: </label>
+      <input type="text" id="deleteList">
+      <button class="buttons search" id="deleteButton">Delete</button>   
     </div>
   </div>
 

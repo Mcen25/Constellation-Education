@@ -58,7 +58,21 @@ body {
     justify-content: flex-start;
     flex-direction: column;
 
-    width: 1000px;
+    width: 1500px;
+    height: 700px;
+    border: 3px solid;
+    border-radius: 5px;
+    margin-top: 30px;
+    margin-left: auto;
+    margin-right: auto;   
+}
+
+.secondRectangle {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: row;
+
+    width: 1500px;
     height: 700px;
     border: 3px solid;
     border-radius: 5px;
@@ -68,10 +82,27 @@ body {
 }
 
 .smallRectangle {
-    width: 300px;
+    display: inline-block;
+    justify-content: center;
+    align-items: center;
+    width: 375px;
     height: 700px;
     border: 2px solid;
     border-radius: 3px;
+}
+
+.deleteRectangle {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+
+    width: 1000px;
+    height: 50px;
+    border: 3px solid;
+    border-radius: 5px;
+    margin-top: 30px;
+    margin-left: auto;
+    margin-right: auto;   
 }
 
 .small {
@@ -120,7 +151,7 @@ body {
     /* border: none; */
     color:black;
     border-radius: 10px;
-    width: 70px;
+    width: auto;
     height: 30px;
     background-color: rgb(255, 255, 255);
     border: none;
@@ -128,6 +159,23 @@ body {
 }
 
 .search:active  {
+    transition-duration: 30ms;
+    box-shadow: none;
+    transform: translateY(2px);
+}
+
+.readSearch {
+    /* border: none; */
+    color:black;
+    border-radius: 10px;
+    width: auto;
+    height: 30px;
+    background-color: rgb(255, 255, 255);
+    border: none;
+    box-shadow: 0 4px 0 rgba(186, 186, 186, 0.878);
+}
+
+.readSearch:active  {
     transition-duration: 30ms;
     box-shadow: none;
     transform: translateY(2px);

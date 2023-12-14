@@ -73,7 +73,7 @@ export class ConstellationDatabase {
   }
    // CREATE a user in the database.
    async createList(idName, givenName1, givenName2, givenName3, givenName4, givenName5) {
-    const res = await this.collectionList.insertOne({ id: idName, givenName1, name2: givenName2, name3: givenName3, name4: givenName4, name5: givenName5 });
+    const res = await this.collectionList.insertOne({ id: idName, name1: givenName1, name2: givenName2, name3: givenName3, name4: givenName4, name5: givenName5 });
     return res;
   }
 
@@ -84,10 +84,10 @@ export class ConstellationDatabase {
   }
 
   // UPDATE a user in the database.
-  async updateList(idName, name, age) {
+  async updateList(idName, name1, name2, name3, name4, name5) {
     const res = await this.collectionList.updateOne(
       { id: idName },
-      { $set: { name, age } }
+      { $set: { name1, name2, name3, name4, name5} }
     );
     return res;
   }
