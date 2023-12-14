@@ -36,6 +36,43 @@ const readButton = document.getElementById('retrieveButton');
 const feedbackForm = document.getElementById('feedbackForm');
 const feedbackButton = document.getElementById('sendButton');
 
+//Buttons for scrolling
+const feedback = document.getElementById('feedback');
+const section1Button = document.getElementById('section1Button');
+const section2Button = document.getElementById('section2Button');
+const section3Button = document.getElementById('section3Button');
+const clearButton = document.getElementById('clearButton');
+const home = document.getElementById('home');
+
+clearButton.addEventListener('click', () => {
+  localStorage.clear();
+  console.log('Local storage cleared');
+});
+
+home.addEventListener('click', () => {
+  console.log('home clicked');
+  scrollToSection('title');
+});
+section1Button.addEventListener('click', () => {
+  console.log('section1 clicked');
+  scrollToSection('section1');
+});
+
+section2Button.addEventListener('click', () => {
+  console.log('section2 clicked');
+  scrollToSection('section2');
+});
+
+section3Button.addEventListener('click', () => {
+  console.log('section3 clicked');
+  scrollToSection('section3');
+});
+
+feedback.addEventListener('click', () => {
+  console.log('feedback clicked');
+  scrollToSection('feedbackSection');
+});
+
 feedbackButton.addEventListener('click', async () => {
   const feedbackFormValue = feedbackForm.value;
   
@@ -130,6 +167,7 @@ createListButton.addEventListener('click', async () => {
 
 retrieveButton.addEventListener('click', async () => {
   const readListSearchValue = readListSearch.value;
+  const divElement = document.getElementById('retrieveResponse');
 
   try {
     const response = await fetch(`/list/read`, {
@@ -144,12 +182,9 @@ retrieveButton.addEventListener('click', async () => {
       const data = await response.json();
       const dataString = JSON.stringify(data);
       const jsonData = JSON.parse(dataString);
-      const divElement = document.getElementById('retrieveRectangle');
-
       const fullName = jsonData.fullName;
-      // divElement.innerHTML = `testing`;
-      console.log(jsonData);
 
+      console.log(jsonData);
       const name1 = jsonData.name1;
       const name2 = jsonData.name2;
       const name3 = jsonData.name3;
@@ -164,8 +199,15 @@ retrieveButton.addEventListener('click', async () => {
       <button class="buttons readSearch" id="${name5}Button">${name5}</button>
       `;
 
+      if (jsonData === '') {
+        divElement.innerHTML = `No list found with the name ${readListSearchValue}`;
+      }
     } else {
       console.log('Error:', response.status);
+
+      if (response.status === 400) {
+        divElement.innerHTML = `No list found with the name ${readListSearchValue}`;
+      }
     }
   } catch (err) {
     console.log(err);
@@ -208,35 +250,8 @@ searchButton.addEventListener('click', async () => {
 
     if (response.ok) {
       const data = await response.json();
-
-      const dataString = JSON.stringify(data);
-      const jsonData = JSON.parse(dataString);
-
-      const fullName = jsonData.fullName;
-      const abbreviations = jsonData.abbreviations;
-      const origin = jsonData.origin;
-      const meaning = jsonData.meaning;
-      const brightestStar = jsonData.brightestStar;
-      const url = jsonData.url;
-      const visible = jsonData.visible;
-      const starNum = jsonData.starNum;
-      const area = jsonData.area;
-
-      const divElement = document.getElementById('constellationInfo');
-
-      divElement.innerHTML = `
-      <h2 class="putCenter">${fullName}</h2>
-      <div class="putCenter">
-      <img src="${url}" alt="Description of the image" width="500" height="500">
-      <div>
-      <p><strong>Abbreviations:</strong> ${abbreviations}</p>
-      <p><strong>Origin:</strong> ${origin}</p>
-      <p><strong>Meaning:</strong> ${meaning}</p>
-      <p><strong>Brightest Star:</strong> ${brightestStar}</p>
-      <p><strong>Visible:</strong> ${visible}</p>
-      <p><strong>Star Number:</strong> ${starNum}</p>
-      <p><strong>Area:</strong> ${area}</p>
-    `;
+      localStorage.setItem('constellation', JSON.stringify(data));
+      renderConstellation(JSON.stringify(data));
     } else {
       console.log('Error:', response.status);
     }
@@ -282,4 +297,45 @@ function scrollToSection(sectionId) {
   }
 }  
 
+function localStorageConstellation() {
+  if (window.localStorage.getItem('constellation') !== null) {
+    const data = window.localStorage.getItem('constellation');
+    renderConstellation(data);
+    console.log(data);
+  } else {
+    console.log('No data in local storage');
+  }
+}
+
+function renderConstellation(data) {
+  const jsonData = JSON.parse(data);
+
+  const fullName = jsonData.fullName;
+  const abbreviations = jsonData.abbreviations;
+  const origin = jsonData.origin;
+  const meaning = jsonData.meaning;
+  const brightestStar = jsonData.brightestStar;
+  const url = jsonData.url;
+  const visible = jsonData.visible;
+  const starNum = jsonData.starNum;
+  const area = jsonData.area;
+
+  const divElement = document.getElementById('constellationInfo');
+
+  divElement.innerHTML = `
+  <h2 class="putCenter">${fullName}</h2>
+  <div class="putCenter">
+  <img src="${url}" alt="Description of the image" width="500" height="500">
+  <div>
+  <p><strong>Abbreviations:</strong> ${abbreviations}</p>
+  <p><strong>Origin:</strong> ${origin}</p>
+  <p><strong>Meaning:</strong> ${meaning}</p>
+  <p><strong>Brightest Star:</strong> ${brightestStar}</p>
+  <p><strong>Visible:</strong> ${visible}</p>
+  <p><strong>Star Number:</strong> ${starNum}</p>
+  <p><strong>Area:</strong> ${area}</p>
+  `;
+}
+
 await constellationButtons();
+localStorageConstellation();

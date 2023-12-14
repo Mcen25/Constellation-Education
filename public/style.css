@@ -14,12 +14,6 @@ body {
     font-family: 'Montserrat', sans-serif;;
 }
 
-#feedback {
-    position: fixed;
-    top: 90%;
-    left: 90%;
-}
-
 #title {
     text-align: center;
     font-size: 100px;
@@ -31,6 +25,11 @@ body {
 }
 
 #feedback {
+    margin-top: 12px;
+    position: fixed;
+    top: 90%;
+    left: 90%;
+
     background: rgba(32, 12, 215, 0.243);
     border: 2px solid;
     border-color: rgba(255, 255, 255, 0.2);
@@ -43,6 +42,28 @@ body {
 }
 
 #feedback:hover {
+    background: rgba(32, 12, 215, 0.745);
+    border-color: rgba(255, 255, 255, 0);
+    transition-duration: 0.5s;
+}
+
+#home {
+    position: fixed;
+    top: 85%;
+    left: 90%;
+
+    background: rgba(32, 12, 215, 0.243);
+    border: 2px solid;
+    border-color: rgba(255, 255, 255, 0.2);
+    color: white;
+    padding: 15px 20px;
+    text-align: center;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 10px;
+}
+
+#home:hover {
     background: rgba(32, 12, 215, 0.745);
     border-color: rgba(255, 255, 255, 0);
     transition-duration: 0.5s;
